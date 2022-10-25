@@ -1,0 +1,24 @@
+#test.resources 폴더에 설정파일(.yml)이 있으면 우선적으로 실행하고 main의 설정파일(.yml)은 무시된다.
+#DB관련 설정이 없으면 spring이 알아서 memory모드로 테스트를 돌림, 이 때 spring.jpa.hibernate.ddl-auto:create-drop이 기본 설정이다.
+spring:
+  datasource:
+    #메모리 모드로 동작하게 하는 url
+    url: jdbc:h2:mem:test
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      # 실행할 때마다 테이블 새로 생성
+      ddl-auto: create
+    properties:
+      hibernate:
+#        show_sql: true
+        format_sql: true
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    #쿼리 파라미터가 어떻게 나가는지 확인하는 설정
+    org.hibernate.type: trace
